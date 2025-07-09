@@ -1,0 +1,81 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+#define MAX 100
+char queue[MAX][50];  
+int front = 0;
+int rear = -1;
+void enqueue(const char* item) {
+    if (rear == MAX - 1) {
+        printf("Queue Overflow\n");
+    } else {
+        rear++;
+        strcpy(queue[rear], item);
+    }
+}
+char* dequeue() {
+    static char item[50];
+    if (front > rear) {
+        printf("Queue Underflow\n");
+        return NULL;
+    } else {
+        strcpy(item, queue[front]);
+        front++;
+        return item;
+    }
+}
+void displayQueue() {
+    if (front > rear) {
+        printf("Queue is empty\n");
+    } else {
+        printf("[");
+        for (int i = front; i <= rear; i++) {
+            printf("%s", queue[i]);
+            if (i < rear) printf(", ");
+        }
+        printf("]\n");
+    }
+}
+bool contains(const char* item) {
+    for (int i = front; i <= rear; i++) {
+        if (strcmp(queue[i], item) == 0) return true;
+    }
+    return false;
+}
+int main() {
+    enqueue("Compiler");
+    enqueue("Firewall");
+    enqueue("Algorithm");
+    enqueue("Protocol");
+    enqueue("Cache");
+    printf("Initial Queue:\n");
+    displayQueue();
+    char* dq1 = dequeue();
+    char* dq2 = dequeue();
+    printf("\nAfter 2 Dequeues:\n");
+    printf("Dequeued: %s, %s\n", dq1, dq2);
+    displayQueue();
+    enqueue("Virtualization");
+    printf("\nAfter Enqueue 'Virtualization':\n");
+    displayQueue();
+    char* dq3 = dequeue();
+    printf("\nAfter 1 Dequeue:\n");
+    printf("Dequeued: %s\n", dq3);
+    displayQueue();
+    enqueue("Cloud");
+    printf("\nAfter Enqueue 'Cloud':\n");
+    displayQueue();
+    bool found = contains("Protocol");
+    printf("\nIs 'Protocol' present? %s\n", found ? "Yes" : "No");
+    enqueue("Machine Learning");
+    printf("\nAfter Enqueue 'Machine Learning':\n");
+    displayQueue();
+    char* dq4 = dequeue();
+    printf("\nAfter Final Dequeue:\n");
+    printf("Dequeued: %s\n", dq4);
+    displayQueue();
+    printf("\nConcept Check:\n");
+    printf("Element at position 3 (Algorithm) dequeued in Step 3\n");
+    printf("Element at position 4 (Protocol) dequeued in Step 7\n");
+    return 0;
+}

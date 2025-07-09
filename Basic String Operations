@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char brand[] = "Lenovo";
+    printf("1. Length of brand: %lu\n", strlen(brand));
+
+    char brand1[20] = "Dell";
+    char brand2[] = "HP";
+    strcat(brand1, brand2);
+    printf("2. Concatenated brand: %s\n", brand1);
+
+    char brand3[] = "Asus";
+    printf("3. 2nd character in 'Asus': %c\n", brand3[1]);
+
+    printf("4. Characters in 'Apple':\n");
+    char brand4[] = "Apple";
+    for (int i = 0; i < strlen(brand4); i++) {
+        printf("%c\n", brand4[i]);
+    }
+
+    char brand5[] = "acer";
+    printf("5. Uppercase of 'acer': ");
+    for (int i = 0; i < strlen(brand5); i++) {
+        if (brand5[i] >= 'a' && brand5[i] <= 'z') {
+            printf("%c", brand5[i] - 32);
+        } else {
+            printf("%c", brand5[i]);
+        }
+    }
+    printf("\n");
+
+    return 0;
+}

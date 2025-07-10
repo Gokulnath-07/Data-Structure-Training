@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char brand[] = "MSI";
+    int isPalindrome = 1;
+    int len = strlen(brand);
+    for (int i = 0; i < len / 2; i++) {
+        if (brand[i] != brand[len - 1 - i]) {
+            isPalindrome = 0;
+            break;
+        }
+    }
+    printf("11. Is 'MSI' a palindrome? %s\n", isPalindrome ? "Yes" : "No");
+
+    char str[] = "Lenovo";
+    int flag[256] = {0};
+    printf("12. Unique characters in 'Lenovo': ");
+    for (int i = 0; i < strlen(str); i++) {
+        if (!flag[(unsigned char)str[i]]) {
+            printf("%c ", str[i]);
+            flag[(unsigned char)str[i]] = 1;
+        }
+    }
+    printf("\n");
+
+    char *brands[] = {"Dell", "HP", "Lenovo", "Asus", "Apple", "MSI"};
+    int max_len = 0;
+    char *longest = "";
+    for (int i = 0; i < 6; i++) {
+        if (strlen(brands[i]) > max_len) {
+            max_len = strlen(brands[i]);
+            longest = brands[i];
+        }
+    }
+    printf("13. Longest brand name: %s\n", longest);
+
+    printf("14. Brands starting with 'A': ");
+    for (int i = 0; i < 4; i++) {
+        if (brands[i][0] == 'A') {
+            printf("%s ", brands[i]);
+        }
+    }
+    printf("\n");
+
+    char word[] = "Apple";
+    int freq[256] = {0};
+    for (int i = 0; i < strlen(word); i++) {
+        freq[(unsigned char)word[i]]++;
+    }
+    printf("15. Character frequency in 'Apple':\n");
+    for (int i = 0; i < 256; i++) {
+        if (freq[i] > 0) {
+            printf("'%c': %d\n", i, freq[i]);
+        }
+    }
+
+    return 0;
+}
